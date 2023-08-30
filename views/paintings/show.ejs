@@ -1,0 +1,90 @@
+<% layout('layouts/boilerplate') %>
+<div class="mb-3">
+  <h1><%= painting.name %></h1>
+<div class="row">
+    
+<div class="col-4">
+    <div id="carouselExample" class="carousel slide " width="400" >
+      <div class="carousel-inner">
+          <% painting.images.forEach((img, i) => {  %>
+          <div class="carousel-item <%= i === 0 ? 'active' : ''%>">
+            <% var u=img.url %>
+            <% u=u.replace('/upload','/upload/w_500') %>
+              <img src="<%=u %>" class="d-block" alt="">
+          </div>
+          <% }) %>
+
+      </div>
+      <% if(painting.images.length > 1) {%>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev" >
+          <span class="carousel-control-prev-icon" aria-hidden="true" ></span>
+          <span class="visually-hidden" >Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      <% } %>
+   </div>
+</div>
+          
+    
+<div class=" card mb-6 col-5">
+    <div class="card-body">
+      <h5>Description :<%=painting.description %></h5>
+      <h5>Artist:<%=painting.artist %></h5>
+      
+    <h5>price=$<%= painting.price %></h5>
+    
+  
+    
+    
+    <% if(req.session.user_id==painting.sellername._id){ %>
+      <span>
+    <a href="/paintings/<%=painting._id %>/edit" class="btn btn-primary inline" style="width:100px"> edit</a></span>
+    <span><form class="d-inline"action="/paintings/<%=painting._id%>?_method=DELETE" method="POST" class="card-link btn btn-da">
+      <button class="btn btn-danger" >delete</button></form><% } %></span>
+      <span><form action="/paintings/<%=painting._id %>/cart">
+        <button style="margin: 5%;">add to cart</button>
+      </form></span>
+    </div>
+    </div>
+</div>
+</div>
+
+</div>
+<style>
+
+  .carousel-control-prev,.carousel-control-next{
+
+    height: 50px;
+    width: 50px;
+    outline: black;
+    background-color: rgba(0, 0, 0, 0.3);
+    background-size: 100%, 100%;
+    border-radius: 50%;
+    border: 1px solid black;
+  }
+  
+  a.card{
+    margin:20px;
+  }
+  .corousel{
+    max-width:700px;
+    border-style: solid;
+    border-color: black;
+  }
+  .card{
+    padding-left: 20px;
+    margin-left: 20px;
+  }
+  span{
+    position: relative;
+    width:100px;
+    margin:5px;
+  }
+  img{
+    border-color: black;
+  }
+</style>
+

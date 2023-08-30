@@ -1,0 +1,46 @@
+<% layout('layouts/boilerplate') %>
+
+
+
+  <form class="row g-3 needs-validation form-floating"  action="/paintings" method="POST" novalidate enctype="multipart/form-data" >
+
+
+    <div class="col-md-4">
+      <label for="name" class="form-label">enter the name of the painting</label>
+      <input type="text" class="form-control"  name="painting[name]" id="name" required>
+      <div class="valid-feedback">
+        Looks good!
+      </div>
+    </div>
+    <div class="col-md-4">
+      <label for="description" class="form-label">description</label>
+      
+      <textarea name="painting[description]" id="description" cols="30" rows="10" required></textarea>
+       <div class="valid-feedback">
+        Looks good!
+      </div>
+    </div>
+    <div class="col-md-4">
+      <label for="artist" class="form-label">artist</label>
+
+        <textarea name="painting[artist]" id="artist" cols="30" rows="10" required></textarea>
+      <div class="valid-feedback">
+        Looks good!
+      </div>
+    </div>
+    <input type="file" name="image" id="" multiple required>
+    <div class="col-md-4">
+      <label for="price" class="form-label">enter price</label>
+      <input type="text" class="form-control" id="price" name="painting[price]" required>
+      <div class="valid-feedback">
+        Looks good!
+      </div>
+    </div>
+    <div class="col-12">
+      <button class="btn btn-primary" type="submit">Submit </button>
+    </div>
+    
+  </form>
+ 
+
+ 

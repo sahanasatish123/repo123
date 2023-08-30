@@ -1,0 +1,92 @@
+<!-- 
+
+
+    <form action="/paintings/<%= //painting._id %>?_method=PUT" method="POST">
+    <div>
+        <label for="name">enter the name of the painting</label>
+        <input type="text" id="name" name="painting[name]" value="<%= //painting.name %>">
+    </div>
+    <div>
+        <label for="description">description</label>
+    <textarea name="painting[description]" id="description" cols="30" rows="10" ><%=//painting.description %></textarea>
+    </div>
+    <div>
+        <label for="artist">about the artist</label>
+        <textarea name="painting[artist]" id="artist" cols="30" rows="10"><%=// painting.artist %></textarea>
+     
+    </div>
+    <div><label for="url">enter the url of image</label>
+        <input type="text" id="url"  name="painting[url]" value="<%= //painting.url %>">
+        <button class="btn btn-success">submit</button>
+    </div>
+    <div><label for="url">enter price</label>
+        <input type="text" id="url"  name="painting[price]" value="<%= //painting.price %>">
+        <button class="btn btn-success">submit</button>
+    </div>
+    </form> -->
+    <% layout('layouts/boilerplate') %>
+
+
+
+  <form class="row g-3 needs-validation form-floating"  action="/paintings/<%= painting._id %>?_method=PUT" method="POST" novalidate enctype="multipart/form-data" >
+
+
+    <div class="col-md-4">
+      <label for="name" class="form-label">enter the name of the painting</label>
+      <input type="text" class="form-control"  name="painting[name]" id="name"value="<%= painting.name %>" required>
+      <div class="valid-feedback">
+        Looks good!
+      </div>
+    </div>
+    <div class="col-md-4">
+      <label for="description" class="form-label">description</label>
+      
+      <textarea name="painting[description]" id="description" cols="30" rows="10" required><%=painting.description %></textarea>
+       <div class="valid-feedback">
+        Looks good!
+      </div>
+    </div>
+    <div class="col-md-4">
+      <label for="artist" class="form-label">artist</label>
+
+        <textarea name="painting[artist]" id="artist" cols="30" rows="10" required><%= painting.artist %></textarea>
+      <div class="valid-feedback">
+        Looks good!
+      </div>
+    </div>
+    <input type="file" name="image" id="" multiple>
+    <div class="col-md-4">
+      <label for="price" class="form-label">enter price</label>
+      <input type="text" class="form-control" id="price" name="painting[price]" value="<%= painting.price %>"required>
+      <div class="valid-feedback">
+        Looks good!
+      </div>
+    </div>
+    <div>
+    <% painting.images.forEach((img,i)=>{%>
+        <div >
+          <% var u=img.url %>
+            <% u=u.replace('/upload','/upload/w_400') %>
+            <img class="d-block" width="200px" src="<%= u %>" alt="">
+            <div class="form-check-inline">
+              <input type="checkbox" id="image<%=i%>" name="deleteImages[]" value="<%=img.filename %>">
+            </div>
+            <label for="image<%=i%>">delete</label>
+          </div>
+          <% })  %>
+        </div>
+    <div class="col-12">
+      <button class="btn btn-primary" type="submit">Submit </button>
+    </div>
+    
+  </form>
+ <style>
+    img {  
+width:100;
+height:100; 
+  
+object-fit: fill;   
+} 
+ </style>
+
+ 

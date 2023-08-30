@@ -1,0 +1,70 @@
+<% layout('layouts/boilerplate') %>
+<!-- <form action="/register" method="POST">
+    <label for="username"> enter username</label>
+    <input type="text" id="username" name="user[username]">
+
+    <label for="email"> enter email</label>
+    <input type="email" id="email" name="user[email]">
+
+    <label for="address">enter address</label>
+    <input type="textarea" id="address" name="user[address]">
+
+    <label for="password">enter password</label>
+    <input type="password" id="password" name="user[password]">
+
+    <button type="submit">register</button>
+</form> -->
+ 
+<div class="login-page">
+<form action="/register" method="POST"> 
+    <div class="card">
+        <div class="card-title">login</div>
+        <div class="mb3">
+            <label for="username"> enter username</label>
+            <input type="text" id="username" name="user[username]" required>
+</div>
+<div class="mb-3">
+    <label for="email"> enter email</label>
+    <input type="email" id="email" name="user[email]" required>
+</div>
+<div class="mb-3">
+<label for="address">enter address</label>
+    <input type="textarea" id="address" name="user[address]" required>
+
+</div>
+<div class="mb3">
+    <label for="password">enter password</label>
+    <input type="password" name="user[password]" required>
+</div class="mb-3" >
+    <button type="submit">submit</button>
+</div>
+</form> 
+</div>
+<script>
+    try{
+        const email=form.user[email].value;
+        const password=form.user[password].value;
+        const res=await fetch('/register',{
+            method:'POST',
+            body:JSON.stringify({email,password}),
+            headers:{'Content-Type':'application/json'}
+        });
+    }
+    catch(e){
+       console.log(e) 
+    }
+</script>
+<style>
+    *{
+        padding: 5px;
+    }
+    .login-page{
+        padding: 5px;
+        justify-content: center;
+        text-align: center;
+        margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+    }
+</style>
+

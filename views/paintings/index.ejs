@@ -1,0 +1,46 @@
+<% layout('layouts/boilerplate') %>
+
+
+    <h1 style="text-align:center;">Products</h1>
+    <div class="container d-flex flex-wrap align-items-center">
+    <% for(let painting of paintings) {%>
+      <div class="card h-100" style="width: 18rem; height:20rem;">
+        <img class="card-img-top " height="200px" src="<%= painting.images[0].url%>" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title"><%= painting.name %></h5>
+          <p class="card-text"><%= painting.description %></p>
+          <a href="/paintings/<%= painting._id %>" class="btn btn-primary">show</a>
+        </div>
+      </div>
+      <% } %>
+    </div>
+       
+    
+<style>
+  body{
+    margin: 5px 0;
+  }
+  
+  .card{
+    border-radius: 8px;
+    border: 1px solid #cccccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    box-sizing: border-box;
+   
+    margin:5px;
+    width: 200px;
+  height: 400px;
+  object-fit: fill;
+  }
+  .card:hover{
+    transform: scale(1.1);
+    transition: all linear 200ms;
+    z-index: 1;
+    box-shadow: 1px 1px 10px rgba(0,0,0,.3);
+    cursor: pointer;
+  }
+</style>
+        
